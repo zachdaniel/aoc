@@ -22,7 +22,7 @@ defmodule Aoc.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:spark, path: "../ash/spark"},
+      {:spark, "~> 0.2.14"},
       # File system event watcher
       {:file_system, "~> 0.2"},
       {:elixir_sense, github: "elixir-lsp/elixir_sense"}
@@ -31,7 +31,8 @@ defmodule Aoc.MixProject do
 
   defp aliases() do
     [
-      watch: "aoc.watch"
+      watch: "aoc.watch",
+      "spark.formatter": "spark.formatter --extensions Aoc.Day.Dsl"
     ]
   end
 end
