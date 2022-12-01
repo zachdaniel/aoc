@@ -51,13 +51,11 @@ defmodule Aoc.Y2021.Day1 do
     end
   end
 
-  input do
-    use_example? false
+  solutions do
+    part_1 &solution/1
 
-    handle_input fn input ->
-      input
-      |> String.split("\n")
-      |> Enum.map(&String.to_integer/1)
+    part_2 fn input ->
+      solution(input, 3)
     end
   end
 end

@@ -19,16 +19,20 @@ defmodule Aoc.Y2022.Day1 do
     end
   end
 
-  input do
-    use_example? false
+  solutions do
+    part_1 fn elves ->
+      elves
+      |> Enum.map(&Enum.sum/1)
+      |> Enum.max()
+    end
 
-    handle_input fn input ->
-      input
-      |> String.split("\n\n")
-      |> Enum.map(&String.split(&1, "\n"))
-      |> Enum.map(fn elf ->
-        Enum.map(elf, &String.to_integer/1)
-      end)
+    part_2 fn elves ->
+      elves
+      |> Enum.map(&Enum.sum/1)
+      |> Enum.sort()
+      |> Enum.reverse()
+      |> Enum.take(3)
+      |> Enum.sum()
     end
   end
 end
