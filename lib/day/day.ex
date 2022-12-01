@@ -1,122 +1,75 @@
 defmodule Aoc.Day do
-  use Spark.Dsl
+  alias Aoc.Day.Info
+  use Spark.Dsl, default_extensions: [extensions: [Aoc.Day.Dsl]]
 
-  defmodule Dsl do
-    @input %Spark.Dsl.Section{
-      name: :input,
-      schema: [
-        part_1_input: [
-          type: :string,
-          default: "input.txt"
-        ],
-        part_2_input: [
-          type: :string,
-          default: "input.txt"
-        ],
-        example_input: [
-          type: :string,
-          default: "example_input.txt"
-        ],
-        part_2_example_input: [
-          type: :string,
-          default: "example_input.txt"
-        ],
-        handle_input: [
-          type:
-            {:spark_function_behaviour, Aoc.Day.InputHandler, {Aoc.Day.InputHandler.Function, 1}},
-          required: true
-        ],
-        handle_part_2_input: [
-          type:
-            {:spark_function_behaviour, Aoc.Day.InputHandler, {Aoc.Day.InputHandler.Function, 1}},
-          required: true
-        ]
-      ]
-    }
+  def compute_missing_answer(day) do
+    part =
+      case Info.part_1_answer(day) do
+        {:ok, _} ->
+          :part_2
 
-    @solutions %Spark.Dsl.Section{
-      name: :solutions,
-      schema: [
-        solve_part_1: [
-          type: {:spark_function_behaviour, Aoc.Day.Solver, {Aoc.Day.Solver.Function, 1}},
-          required: true
-        ],
-        solve_part_2: [
-          type: {:spark_function_behaviour, Aoc.Day.Solver, {Aoc.Day.Solver.Function, 1}}
-        ]
-      ]
-    }
+        _ ->
+          :part_1
+      end
 
-    @answers %Spark.Dsl.Section{
-      name: :answers,
-      schema: [
-        part_1: [
-          type: :any
-        ],
-        part_2: [
-          type: :any
-        ]
-      ]
-    }
+    example? = Info.use_example?(day)
 
-    use Spark.Dsl.Extension,
-      sections: [@input, @solutions, @answers]
+    input =
+      case part do
+        :part_1 ->
+          if example? do
+            Info.example_input(day)
+          else
+            Info.part_1_input(day)
+          end
+
+        :part_2 ->
+          if example? do
+            Info.part_2_example_input(day)
+          else
+            Info.part_2_input(day)
+          end
+      end
+
+    input = File.read!(input)
+
+    handled_input =
+      case part do
+        :part_1 ->
+          handle(Info.input_handler(day), input)
+
+        :part_2 ->
+          handle(Info.part_2_input_handler(day), input)
+      end
+
+    solution =
+      case part do
+        :part_1 ->
+          solve(Info.part_1_solution(day), handled_input)
+
+        :part_2 ->
+          solve(Info.part_2_solution(day), handled_input)
+      end
+
+    part =
+      if example? do
+        "#{part}_example"
+      else
+        part
+      end
+
+    {part, solution}
   end
 
-  defmodule Info do
-    alias Spark.Dsl.Extension
+  defp solve(nil, _), do: nil
 
-    def part_1_answer(day) do
-      Extension.fetch_opt(day, [:answers], :part_1)
-    end
-
-    def part_2_answer(day) do
-      Extension.fetch_opt(day, [:answers], :part_1)
-    end
-
-    def part_1_input(day) do
-      Extension.get_opt(day, [:input], :part_1_input, "input.txt")
-      |> relative_to(day)
-    end
-
-    def part_2_input(day) do
-      Extension.get_opt(day, [:input], :part_2_input, "input.txt")
-      |> relative_to(day)
-    end
-
-    def example_input(day) do
-      Extension.get_opt(day, [:input], :example_input, "example_input.txt")
-      |> relative_to(day)
-    end
-
-    def part_2_example_input(day) do
-      Extension.get_opt(day, [:input], :part_2_example_input, "example_input.txt")
-      |> relative_to(day)
-    end
-
-    def input_handler(day) do
-      Extension.get_opt(day, [:input], :handle_input)
-    end
-
-    def part_1_input_handler(day) do
-      Extension.get_opt(day, [:input], :handle_part_2_input) || input_handler(day)
-    end
-
-    def part_1_solution(day) do
-      Extension.get_opt(day, [:solutions], :part_1)
-    end
-
-    def part_2_solution(day) do
-      Extension.get_opt(day, [:solutions], :part_2) || part_1_solution(day)
-    end
-
-    defp relative_to(path, day) do
-      Path.join(day.module_info()[:compile][:source] |> Path.dirname(), path)
-    end
+  defp solve({mod, opts}, input) do
+    mod.solve(input, opts)
   end
 
-  use Spark.Dsl,
-    default_extensions: [
-      extensions: [Dsl]
-    ]
+  defp handle(nil, input), do: input
+
+  defp handle({mod, opts}, input) do
+    mod.handle(input, opts)
+  end
 end

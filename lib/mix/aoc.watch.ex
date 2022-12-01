@@ -5,13 +5,13 @@ defmodule Mix.Tasks.Aoc.Watch do
 
   def run(_args) do
     :ok = Application.ensure_started(:file_system)
-    Watcher.start()
+    Watcher.start(Mix.shell())
     Mix.shell().info("Making a list, checking it twice...")
     prompt_loop()
   end
 
   defp prompt_loop() do
-    answer = Mix.shell().prompt(": ")
+    answer = Mix.shell().prompt("input:")
 
     case Watcher.handle_answer(answer) do
       :quit ->
