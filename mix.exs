@@ -22,7 +22,8 @@ defmodule Aoc.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:spark, "~> 0.2.14"},
+      {:spark, path: "../ash/spark"},
+
       # File system event watcher
       {:file_system, "~> 0.2"},
       {:elixir_sense, github: "elixir-lsp/elixir_sense"}
