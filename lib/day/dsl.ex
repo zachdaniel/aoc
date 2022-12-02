@@ -12,7 +12,7 @@ defmodule Aoc.Day.Dsl do
       ],
       part_2_input: [
         type: :string,
-        default: "input.txt"
+        default: "part_2_input.txt"
       ],
       example_input: [
         type: :string,
@@ -20,12 +20,11 @@ defmodule Aoc.Day.Dsl do
       ],
       part_2_example_input: [
         type: :string,
-        default: "example_input.txt"
+        default: "part_2_example_input.txt"
       ],
       handle_input: [
         type:
-          {:spark_function_behaviour, Aoc.Day.InputHandler, {Aoc.Day.InputHandler.Function, 1}},
-        required: true
+          {:spark_function_behaviour, Aoc.Day.InputHandler, {Aoc.Day.InputHandler.Function, 1}}
       ],
       handle_part_2_input: [
         type:
