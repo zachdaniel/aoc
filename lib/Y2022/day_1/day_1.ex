@@ -7,8 +7,6 @@ defmodule Aoc.Y2022.Day1 do
   end
 
   input do
-    use_example? false
-
     handle_input fn input ->
       input
       |> String.split("\n\n")

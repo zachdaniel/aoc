@@ -10,7 +10,7 @@ defmodule Aoc.Day.Info do
   end
 
   def use_example?(day) do
-    Extension.get_opt(day, [:input], :use_example?, true)
+    Extension.get_opt(day, [:input], :use_example?, false)
   end
 
   def part_1_input(day) do

@@ -1,6 +1,27 @@
 defmodule Aoc.Y2021.Day1 do
   use Aoc.Day
 
+  answers do
+    part_1 1832
+    part_2 1858
+  end
+
+  input do
+    handle_input fn input ->
+      input
+      |> String.split("\n")
+      |> Enum.map(&String.to_integer/1)
+    end
+  end
+
+  solutions do
+    part_1 &solution/1
+
+    part_2 fn input ->
+      solution(input, 3)
+    end
+  end
+
   def solution(input, window_size \\ 1) do
     input
     |> Enum.reduce(
@@ -34,28 +55,5 @@ defmodule Aoc.Y2021.Day1 do
       end
     )
     |> Map.get(:increases)
-  end
-
-  answers do
-    part_1 1832
-    part_2 1858
-  end
-
-  input do
-    use_example? false
-
-    handle_input fn input ->
-      input
-      |> String.split("\n")
-      |> Enum.map(&String.to_integer/1)
-    end
-  end
-
-  solutions do
-    part_1 &solution/1
-
-    part_2 fn input ->
-      solution(input, 3)
-    end
   end
 end

@@ -49,8 +49,17 @@ defmodule Aoc.Day.Watcher do
       end)
 
     case result do
-      {:ok, {answer_for, result}} ->
-        state.shell.info("Answer for #{inspect(day)}.#{answer_for} is #{inspect(result)}")
+      {:ok, ms, {answer_for, result}} ->
+        result =
+          if is_binary(result) do
+            result
+          else
+            inspect(result)
+          end
+
+        state.shell.info(
+          "Answer for #{inspect(day)}.#{answer_for} took #{ms}ms:\n\n\n#{result}\n\n"
+        )
 
       {:error, error, stack} ->
         state.shell.info(
@@ -99,7 +108,14 @@ defmodule Aoc.Day.Watcher do
           task =
             Task.async(fn ->
               try do
-                {:ok, Aoc.Day.compute_missing_answer(day)}
+                start = System.monotonic_time() |> System.convert_time_unit(:native, :millisecond)
+                answer = Aoc.Day.compute_missing_answer(day)
+
+                time =
+                  (System.monotonic_time() |> System.convert_time_unit(:native, :millisecond)) -
+                    start
+
+                {:ok, abs(time), answer}
               rescue
                 e ->
                   {:error, e, __STACKTRACE__}
