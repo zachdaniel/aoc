@@ -4,7 +4,7 @@ defmodule Aoc.Day.Dsl do
     schema: [
       use_example?: [
         type: :boolean,
-        default: true
+        default: false
       ],
       part_1_input: [
         type: :string,
