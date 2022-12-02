@@ -25,9 +25,21 @@ defmodule Aoc.Day do
 
         :part_2 ->
           if example? do
-            Info.part_2_example_input(day)
+            part2 = Info.part_2_example_input(day)
+
+            if File.exists?(part2) do
+              part2
+            else
+              Info.example_input(day)
+            end
           else
-            Info.part_2_input(day)
+            part2 = Info.part_2_input(day)
+
+            if File.exists?(part2) do
+              part2
+            else
+              Info.part_1_input(day)
+            end
           end
       end
 
