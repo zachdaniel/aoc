@@ -3,7 +3,7 @@ defmodule Aoc.Y2021.Day12 do
 
   answers do
     part_1 3738
-    part_2 120506
+    part_2 120_506
   end
 
   input do
