@@ -1,4 +1,4 @@
-defmodule Aoc2021.Day20 do
+defmodule Aoc.Y2021.Day20 do
   use Aoc.Day
 
   answers do

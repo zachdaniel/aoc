@@ -3,7 +3,7 @@ defmodule CustomOperators do
   def a ++ b, do: a * b
 end
 
-defmodule Aoc2020.Day18 do
+defmodule Aoc.Y2020.Day18 do
   import Kernel, except: [++: 2, -: 2]
   import CustomOperators, warn: false
 

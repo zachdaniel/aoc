@@ -6,7 +6,6 @@ defmodule Aoc.Y2021.Day13 do
     part_2 "BLHFJPJF"
   end
 
-
   input do
     handle_input fn input ->
       [coordinates, instructions] = String.split(input, "\n\n", trim: true)
@@ -96,7 +95,6 @@ defmodule Aoc.Y2021.Day13 do
   defp grid(grid) do
     max_x = Enum.max(Enum.map(grid, &elem(&1, 0)))
     max_y = Enum.max(Enum.map(grid, &elem(&1, 1)))
-
 
     0..max_y
     |> Enum.map_join("\n", fn y ->
