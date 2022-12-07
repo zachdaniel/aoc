@@ -23,13 +23,13 @@ defmodule Aoc.Y2022.Day6 do
     end
   end
 
-  defp find_four_different([_|rest] = input, required \\ 4, n \\ 0) do
+  defp find_four_different([_ | rest] = input, required \\ 4, n \\ 0) do
     taken = Enum.take(input, required)
+
     if taken == Enum.uniq(taken) do
       n + required
     else
       find_four_different(rest, required, n + 1)
     end
-
   end
 end

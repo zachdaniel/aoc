@@ -2,11 +2,10 @@ defmodule Aoc.Y2015.Day4 do
   use Aoc.Day
 
   answers do
-    part_1 282749
+    part_1 282_749
   end
 
   input do
-
     handle_input fn input ->
       input
     end
@@ -22,7 +21,7 @@ defmodule Aoc.Y2015.Day4 do
     end
   end
 
-  defp find_hash(input, leader \\ "00000",  n \\ 0) do
+  defp find_hash(input, leader \\ "00000", n \\ 0) do
     "#{input}#{n}"
     |> :erlang.md5()
     |> Base.encode16()
@@ -30,6 +29,7 @@ defmodule Aoc.Y2015.Day4 do
     |> case do
       true ->
         n
+
       false ->
         find_hash(input, leader, n + 1)
     end

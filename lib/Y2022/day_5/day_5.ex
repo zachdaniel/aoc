@@ -7,28 +7,33 @@ defmodule Aoc.Y2022.Day5 do
   end
 
   input do
-
     handle_input fn input ->
       [stacks, directions] = String.split(input, "\n\n")
+
       stack_rows =
         stacks
         |> String.split("\n")
         |> :lists.droplast()
         |> Enum.map(fn row ->
-         String.graphemes(row)
+          String.graphemes(row)
           |> Enum.chunk_every(4)
-          |> Enum.map(fn ["[", l, "]" | _] ->
-            l
+          |> Enum.map(fn
+            ["[", l, "]" | _] ->
+              l
+
             _ ->
               nil
           end)
         end)
 
-      cols = stack_rows |> Enum.zip() |> Enum.map(fn stack_row ->
-        stack_row
-        |> Tuple.to_list()
-        |> Enum.reject(&is_nil/1)
-      end)
+      cols =
+        stack_rows
+        |> Enum.zip()
+        |> Enum.map(fn stack_row ->
+          stack_row
+          |> Tuple.to_list()
+          |> Enum.reject(&is_nil/1)
+        end)
 
       directions =
         directions
@@ -74,6 +79,7 @@ defmodule Aoc.Y2022.Day5 do
     i = from - 1
     col = Enum.at(cols, i)
     {removed, new_col} = Enum.split(col, count)
+
     cols
     |> List.replace_at(i, new_col)
     |> List.update_at(to - 1, fn current ->
@@ -88,6 +94,4 @@ defmodule Aoc.Y2022.Day5 do
   defp top_stacks(stacks) do
     stacks |> Enum.map(&List.first/1) |> Enum.join()
   end
-
-
 end
