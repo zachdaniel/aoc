@@ -19,7 +19,7 @@ defmodule Aoc.Y2022.Day7 do
       |> follow_instructions()
       |> Map.get("/")
       |> all_directories_and_sizes("/")
-      |> Stream.filter(fn {name, size} ->
+      |> Stream.filter(fn {_name, size} ->
         size <= 100_000
       end)
       |> Stream.map(&elem(&1, 1))

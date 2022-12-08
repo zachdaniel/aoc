@@ -41,7 +41,7 @@ defmodule Aoc.Y2022.Day5 do
         |> Enum.map(fn "move " <> direction ->
           {count, direction} = take_int(direction, "move ")
           {from, direction} = take_int(direction, "from ")
-          {to, direction} = take_int(direction, "to ")
+          {to, _direction} = take_int(direction, "to ")
 
           {count, from, to}
         end)
