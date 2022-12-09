@@ -24,7 +24,7 @@ defmodule Aoc.Y2022.Day9 do
   solutions do
     part_1 fn input ->
       input
-      |> Enum.reduce({{0, 0}, {0, 0}, MapSet.new()}, fn dir, {head, tail, visited} ->
+      |> Enum.reduce({{0, 0}, {0, 0}, MapSet.new([{0, 0}])}, fn dir, {head, tail, visited} ->
 
         head = move(head, dir)
         tail = follow(head, tail)
