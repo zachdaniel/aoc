@@ -9,7 +9,6 @@ defmodule Aoc.Y2022.Day10 do
   end
 
   input do
-
     handle_input fn input ->
       input
       |> String.split("\n")
@@ -44,30 +43,34 @@ defmodule Aoc.Y2022.Day10 do
 
   defp compute(instructions) do
     instructions
-    |> Enum.reduce(%{
-      cycle: 0,
-      x: 1,
-      sum: 0,
-      thresholds: @thresholds,
-      pixels: %{},
-      col: 0,
-      row: 0
-      }, fn :noop, data ->
-        data
-        |> Map.update!(:cycle, &(&1 + 1))
-        |> write_pixel()
-        |> record_if_crossed()
+    |> Enum.reduce(
+      %{
+        cycle: 0,
+        x: 1,
+        sum: 0,
+        thresholds: @thresholds,
+        pixels: %{},
+        col: 0,
+        row: 0
+      },
+      fn
+        :noop, data ->
+          data
+          |> Map.update!(:cycle, &(&1 + 1))
+          |> write_pixel()
+          |> record_if_crossed()
 
-      {:addx, value}, data ->
-        data
-        |> Map.update!(:cycle, &(&1 + 1))
-        |> write_pixel()
-        |> record_if_crossed()
-        |> Map.update!(:cycle, &(&1 + 1))
-        |> write_pixel()
-        |> record_if_crossed()
-        |> Map.update!(:x, &(&1 + value))
-    end)
+        {:addx, value}, data ->
+          data
+          |> Map.update!(:cycle, &(&1 + 1))
+          |> write_pixel()
+          |> record_if_crossed()
+          |> Map.update!(:cycle, &(&1 + 1))
+          |> write_pixel()
+          |> record_if_crossed()
+          |> Map.update!(:x, &(&1 + value))
+      end
+    )
   end
 
   defp record_if_crossed(data) do
@@ -77,8 +80,9 @@ defmodule Aoc.Y2022.Day10 do
       else
         %{data | col: data.col + 1}
       end
+
     if data.cycle == List.first(data.thresholds) do
-      %{data | sum: data.sum + (data.x * data.cycle), thresholds: tl(data.thresholds)}
+      %{data | sum: data.sum + data.x * data.cycle, thresholds: tl(data.thresholds)}
     else
       data
     end
