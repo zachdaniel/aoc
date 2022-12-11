@@ -3,14 +3,15 @@ defmodule Aoc.Y2022.Day8 do
 
   answers do
     part_1 1807
-    part_2 480000
+    part_2 480_000
   end
 
   input do
     handle_input fn input ->
-      [first | _] = rows =
-      input
-      |> String.split("\n")
+      [first | _] =
+        rows =
+        input
+        |> String.split("\n")
 
       dimensions = {String.length(first), Enum.count(rows)}
 
@@ -49,7 +50,9 @@ defmodule Aoc.Y2022.Day8 do
     end
 
     part_2 fn {{x_dim, y_dim}, grid} ->
-      for x <- 0..(x_dim - 1), y <- 0..(y_dim - 1), x != 0 and y != 0 and x != x_dim - 1 and y != y_dim - 1 do
+      for x <- 0..(x_dim - 1),
+          y <- 0..(y_dim - 1),
+          x != 0 and y != 0 and x != x_dim - 1 and y != y_dim - 1 do
         {x, y}
       end
       |> Enum.map(&scenic_score(&1, {x_dim, y_dim}, grid))
@@ -59,6 +62,7 @@ defmodule Aoc.Y2022.Day8 do
 
   defp scenic_score({x, y}, {x_dim, y_dim}, grid) do
     height = grid[{x, y}]
+
     [
       points_up({x, y}, {x_dim, y_dim}),
       points_left({x, y}, {x_dim, y_dim}),
@@ -75,6 +79,7 @@ defmodule Aoc.Y2022.Day8 do
       case remaining do
         [] ->
           Enum.count(trees)
+
         _ ->
           Enum.count(trees) + 1
       end
@@ -84,6 +89,7 @@ defmodule Aoc.Y2022.Day8 do
 
   defp visible?({x, y}, {x_dim, y_dim}, grid) do
     height = grid[{x, y}]
+
     [
       points_left({x, y}, {x_dim, y_dim}),
       points_up({x, y}, {x_dim, y_dim}),

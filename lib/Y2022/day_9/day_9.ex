@@ -7,14 +7,13 @@ defmodule Aoc.Y2022.Day9 do
   end
 
   input do
-
     handle_input fn input ->
       input
       |> String.split("\n")
       |> Enum.flat_map(fn instruction ->
         [direction, number] = instruction |> String.split(" ")
 
-        for _ <- 1..(String.to_integer(number)) do
+        for _ <- 1..String.to_integer(number) do
           direction
         end
       end)
@@ -25,7 +24,6 @@ defmodule Aoc.Y2022.Day9 do
     part_1 fn input ->
       input
       |> Enum.reduce({{0, 0}, {0, 0}, MapSet.new([{0, 0}])}, fn dir, {head, tail, visited} ->
-
         head = move(head, dir)
         tail = follow(head, tail)
 
