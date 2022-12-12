@@ -24,6 +24,7 @@ defmodule Aoc.MixProject do
     [
       # {:spark, github: "ash-project/spark"},
       {:spark, path: "../ash/spark"},
+      {:libgraph, "~> 0.16.0"},
       # File system event watcher
       {:file_system, "~> 0.2"},
       {:elixir_sense, github: "elixir-lsp/elixir_sense"}
