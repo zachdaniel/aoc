@@ -88,20 +88,6 @@ defmodule Aoc.Y2022.Day10 do
     end
   end
 
-  defp record_if_crossed_with_pixels(%{thresholds: [next | rest]} = data) do
-    if data.cycle == next do
-      %{
-        data
-        | sum: data.sum + next * data.x,
-          thresholds: rest,
-          row: data.row + 1,
-          col: 0
-      }
-    else
-      %{data | col: data.col + 1}
-    end
-  end
-
   defp write_pixel(data) do
     if data.x in [data.col - 1, data.col, data.col + 1] do
       %{data | pixels: Map.put(data.pixels, {data.row, data.col}, "#")}
