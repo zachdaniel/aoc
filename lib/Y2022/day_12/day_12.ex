@@ -10,7 +10,8 @@ defmodule Aoc.Y2022.Day12 do
 
   input do
     handle_input fn input ->
-      [first | _] = lines =
+      [first | _] =
+        lines =
         input
         |> String.split("\n", trim: true)
 
@@ -26,11 +27,12 @@ defmodule Aoc.Y2022.Day12 do
           |> Enum.with_index()
           |> Enum.reduce({acc, s, e}, fn {letter, col}, {acc, s, e} ->
             {letter, s} =
-            if letter == "S" do
-              {"a", {row, col}}
-            else
-              {letter, s}
-            end
+              if letter == "S" do
+                {"a", {row, col}}
+              else
+                {letter, s}
+              end
+
             {letter, e} =
               if letter == "E" do
                 {"z", {row, col}}
@@ -46,22 +48,24 @@ defmodule Aoc.Y2022.Day12 do
         Graph.new()
         |> Graph.add_edges(Map.keys(coords))
 
-      graph = Enum.reduce(coords, graph, fn {coord, value}, graph ->
-        coord
-        |> neighbors()
-        |> Enum.reduce(graph, fn neighbor, graph ->
-          case Map.fetch(coords, neighbor) do
-            :error ->
-              graph
-            {:ok, v} ->
-              if v <= value + 1 do
-                 Graph.add_edge(graph, Graph.Edge.new(coord, neighbor))
-              else
+      graph =
+        Enum.reduce(coords, graph, fn {coord, value}, graph ->
+          coord
+          |> neighbors()
+          |> Enum.reduce(graph, fn neighbor, graph ->
+            case Map.fetch(coords, neighbor) do
+              :error ->
                 graph
-              end
-          end
+
+              {:ok, v} ->
+                if v <= value + 1 do
+                  Graph.add_edge(graph, Graph.Edge.new(coord, neighbor))
+                else
+                  graph
+                end
+            end
+          end)
         end)
-      end)
 
       %{coords: coords, max_x: max_x, max_y: max_y, s: s, e: e, graph: graph}
     end
@@ -81,6 +85,7 @@ defmodule Aoc.Y2022.Day12 do
         case Graph.Pathfinding.dijkstra(input.graph, key, input.e) do
           nil ->
             []
+
           path ->
             [path |> Enum.count() |> Kernel.-(1)]
         end
