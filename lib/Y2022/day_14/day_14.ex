@@ -53,7 +53,13 @@ defmodule Aoc.Y2022.Day14 do
     end
 
     part_2 fn input ->
-      tick_until_falling_off(input.acc, input.max_rock, input.min_x, input.max_x, input.max_rock + 2)
+      tick_until_falling_off(
+        input.acc,
+        input.max_rock,
+        input.min_x,
+        input.max_x,
+        input.max_rock + 2
+      )
       |> Kernel.+(1)
     end
   end
@@ -142,7 +148,6 @@ defmodule Aoc.Y2022.Day14 do
 
       {_, ^floor} ->
         :stopped
-
 
       nil ->
         :stopped
