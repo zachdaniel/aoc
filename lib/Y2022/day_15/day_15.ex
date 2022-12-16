@@ -3,7 +3,7 @@ defmodule Aoc.Y2022.Day15 do
 
   answers do
     part_1 5_525_847
-    part_2 13340867187704
+    part_2 13_340_867_187_704
   end
 
   input do
