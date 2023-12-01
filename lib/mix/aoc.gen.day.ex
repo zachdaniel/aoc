@@ -1,8 +1,6 @@
 defmodule Mix.Tasks.Aoc.Gen.Day do
   use Mix.Task
 
-  alias Aoc.Day.Watcher
-
   def run([year, day]) do
     year = String.to_integer(year)
     day = String.to_integer(day)

@@ -67,9 +67,14 @@ defmodule Aoc.Y2022.Day16 do
         |> elem(0)
 
       all_routes =
-        all_routes_under(graph, rates, "AA", 26, costs_for_each_node, remaining) |> Enum.uniq() |> Enum.reject(&(elem(&1, 0) == 0))
+        all_routes_under(graph, rates, "AA", 26, costs_for_each_node, remaining)
+        |> Enum.uniq()
+        |> Enum.reject(&(elem(&1, 0) == 0))
 
-      for {your_cost, your_path} <- all_routes, {elephant_cost, elephant_path} <- all_routes, your_cost + elephant_cost > optimal_solo_points, disjoint?(your_path, elephant_path) do
+      for {your_cost, your_path} <- all_routes,
+          {elephant_cost, elephant_path} <- all_routes,
+          your_cost + elephant_cost > optimal_solo_points,
+          disjoint?(your_path, elephant_path) do
         your_cost + elephant_cost
       end
       |> Enum.max()
@@ -90,8 +95,19 @@ defmodule Aoc.Y2022.Day16 do
          pressure \\ 0,
          path \\ []
        )
+
   defp all_routes_under(_, _, _, 0, _, _, pressure, path), do: [{pressure, path}]
-  defp all_routes_under(graph, rates, node, minutes_left, costs_for_each_node, remaining, pressure, path) do
+
+  defp all_routes_under(
+         graph,
+         rates,
+         node,
+         minutes_left,
+         costs_for_each_node,
+         remaining,
+         pressure,
+         path
+       ) do
     Enum.flat_map(remaining, fn destination ->
       minutes_elapsed = costs_for_each_node[{node, destination}]
       minutes_left = minutes_left - (minutes_elapsed + 1)
@@ -107,7 +123,16 @@ defmodule Aoc.Y2022.Day16 do
 
       pressure_gained = minutes_left * rates[destination]
 
-      all_routes_under(graph, rates, destination, minutes_left, costs_for_each_node, remaining -- [destination], pressure + pressure_gained, path)
+      all_routes_under(
+        graph,
+        rates,
+        destination,
+        minutes_left,
+        costs_for_each_node,
+        remaining -- [destination],
+        pressure + pressure_gained,
+        path
+      )
     end)
     |> Enum.concat([{pressure, path}])
   end
@@ -124,13 +149,33 @@ defmodule Aoc.Y2022.Day16 do
        )
 
   defp find_maximal_route(_, _, _, 0, _, _, pressure, path), do: {pressure, path}
-  defp find_maximal_route(graph, rates, node, minutes_left, costs_for_each_node, remaining, pressure, path) do
+
+  defp find_maximal_route(
+         graph,
+         rates,
+         node,
+         minutes_left,
+         costs_for_each_node,
+         remaining,
+         pressure,
+         path
+       ) do
     remaining
     |> Enum.map(fn destination ->
       minutes_elapsed = costs_for_each_node[{node, destination}]
       minutes_left = max(minutes_left - (minutes_elapsed + 1), 0)
       pressure_gained = minutes_left * rates[destination]
-      find_maximal_route(graph, rates, destination, minutes_left, costs_for_each_node, remaining -- [destination], pressure + pressure_gained, [destination | path])
+
+      find_maximal_route(
+        graph,
+        rates,
+        destination,
+        minutes_left,
+        costs_for_each_node,
+        remaining -- [destination],
+        pressure + pressure_gained,
+        [destination | path]
+      )
     end)
     |> case do
       [] ->
