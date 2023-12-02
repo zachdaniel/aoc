@@ -63,7 +63,7 @@ defmodule Aoc.Y2023.Day1 do
     if reverse? do
       string
       |> String.reverse()
-      |> do_replace_nums(@reversed_nums, true)
+      |> do_replace_nums(@reversed_nums)
       |> String.reverse()
     else
       do_replace_nums(string, @nums)
