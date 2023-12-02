@@ -3,6 +3,7 @@ defmodule Aoc.Y2023.Day1 do
 
   answers do
     part_1 56397
+    part_2 55701
   end
 
   input do
