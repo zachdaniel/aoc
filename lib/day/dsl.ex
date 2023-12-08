@@ -43,6 +43,9 @@ defmodule Aoc.Day.Dsl do
       part_2: [
         type: {:spark_function_behaviour, Aoc.Day.Solver, {Aoc.Day.Solver.Function, 1}}
       ]
+    ],
+    imports: [
+      Aoc.Helpers
     ]
   }
 

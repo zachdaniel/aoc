@@ -91,22 +91,6 @@ defmodule Aoc.Y2022.Day11 do
     end
   end
 
-  def lcm(values) do
-    Enum.reduce(values, &least_common_multiple/2)
-  end
-
-  defp greatest_common_denominator(left, 0), do: left
-  defp greatest_common_denominator(0, right), do: right
-
-  defp greatest_common_denominator(left, right),
-    do: greatest_common_denominator(right, rem(left, right))
-
-  defp least_common_multiple(0, 0), do: 0
-
-  defp least_common_multiple(left, right) do
-    div(left * right, greatest_common_denominator(left, right))
-  end
-
   defp play_rounds(input, rounds, monkey_count, div_3?, lcm \\ nil)
   defp play_rounds(input, 0, _, _div_3?, _lcm), do: input
 
