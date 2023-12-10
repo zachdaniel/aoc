@@ -24,6 +24,7 @@ defmodule Aoc.MixProject do
     [
       {:spark, github: "ash-project/spark"},
       {:libgraph, "~> 0.16.0"},
+      {:jason, "~> 1.4"},
       # File system event watcher
       {:file_system, "~> 0.2"}
     ]

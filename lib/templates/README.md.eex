@@ -1,0 +1,11 @@
+# Aoc
+
+My solutions to Advent of Code, wrapped in a Spark DSL for solving each day! 
+Helps me move quickly and do fun things like watching for file changes and printing out the answer on save! 
+
+## Badges
+
+<%= for {year, star_count, color} <- @stars_by_year do %>
+  <img src="https://img.shields.io/static/v1?label=<%= year %>&message=<%= star_count %>%20stars&style=for-the-badge&color=<%= color %>" alt="<%= star_count %> stars" />
+<% end %>
+

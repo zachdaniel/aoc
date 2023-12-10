@@ -1,6 +1,11 @@
 defmodule Aoc.Y2020.Day12 do
   use Aoc.Day
 
+  answers do
+    part_1 796
+    part_2 39446
+  end
+
   input do
     handle_input fn input ->
       input
