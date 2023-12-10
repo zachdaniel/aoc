@@ -13,5 +13,4 @@ Helps me move quickly and do fun things like watching for file changes and print
 
 | Year | Day | Part | IPS | Average | Deviation | Median | 99th Percentile |
 <%= for {year, day, name, ips, average, deviation, median, ninety_ninth_percentile} <- @benches_by_day do %>
-| <%= year %> | <%= day %> | <%= name %> | <%= ips %> | <%= average %> | <%= deviation %> | <%= median %> | <%= ninety_ninth_percentile %> | 
-<% end %>
+| <%= year %> | <%= day %> | <%= name %> | <%= ips %> | <%= average %> | <%= deviation %> | <%= median %> | <%= ninety_ninth_percentile %> |<% end %>

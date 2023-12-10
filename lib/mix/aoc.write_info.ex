@@ -59,7 +59,7 @@ defmodule Mix.Tasks.Aoc.WriteInfo do
             [scenario]
             |> Benchee.Formatters.Console.RunTime.format_scenarios(bench.configuration)
             |> Enum.at(1)
-            |> String.split("  ", trim: true)
+            |> String.split(["  ", "\n"], trim: true)
             |> Enum.drop(1)
 
           %{
@@ -84,6 +84,10 @@ defmodule Mix.Tasks.Aoc.WriteInfo do
     end
   end
 
+  def run(["--readme"], _) do
+    write_files!()
+  end
+
   def run(["--all"], _) do
     start_agent()
 
@@ -105,7 +109,7 @@ defmodule Mix.Tasks.Aoc.WriteInfo do
   end
 
   def run(args, _) do
-    raise "Expected to get either --all or a year and a day as arguments. Got #{inspect(args)}"
+    raise "Expected to get either --all, --readme, or a year and a day as arguments. Got #{inspect(args)}"
   end
 
   defp write_files!() do
@@ -158,7 +162,7 @@ defmodule Mix.Tasks.Aoc.WriteInfo do
         |> Enum.sort_by(& &1["name"])
         |> Enum.map(fn bench ->
           {year, day, bench["name"], bench["ips"], bench["average"], bench["deviation"],
-           bench["median"], bench["ninety_ninth_percentile"]}
+           bench["median"], String.trim(bench["ninety_ninth_percentile"])}
         end)
       end)
     end)
