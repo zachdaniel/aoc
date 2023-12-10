@@ -5,6 +5,7 @@ defmodule Aoc.Y2022.Day10 do
 
   answers do
     part_1 13060
+    part_2_visual?(true)
     part_2 "FJUBULRZ"
   end
 

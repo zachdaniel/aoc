@@ -57,6 +57,14 @@ defmodule Aoc.Day.Dsl do
       ],
       part_2: [
         type: :any
+      ],
+      part_1_visual?: [
+        type: :boolean,
+        default: false
+      ],
+      part_2_visual?: [
+        type: :boolean,
+        default: false
       ]
     ]
   }

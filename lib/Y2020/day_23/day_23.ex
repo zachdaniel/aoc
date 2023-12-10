@@ -55,6 +55,7 @@ defmodule Aoc.Y2020.Day23 do
       |> sequence(1)
       |> :lists.droplast()
       |> Enum.join("")
+      |> String.to_integer()
     end
 
     part_2 fn _ ->

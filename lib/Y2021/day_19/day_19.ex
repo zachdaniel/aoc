@@ -94,7 +94,6 @@ defmodule Aoc.Y2021.Day19 do
   defp do_build_scanner_map(scanners, remaining_scanners) do
     aligned_scanner = align_one_scanner(scanners, remaining_scanners)
 
-    # IO.inspect("locked in #{aligned_scanner.index}")
     new_remaining_scanners = Enum.reject(remaining_scanners, &(&1.index == aligned_scanner.index))
 
     do_build_scanner_map([aligned_scanner | scanners], new_remaining_scanners)

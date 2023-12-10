@@ -14,6 +14,25 @@ defmodule Aoc.Day do
 
     example? = Info.use_example?(day)
 
+    answer = compute_answer(day, part, example?)
+
+    part =
+      if example? do
+        "#{part}_example"
+      else
+        part
+      end
+
+    {part, answer}
+  end
+
+  def compute_answer(day, part, use_example? \\ nil) do
+    example? =
+      case use_example? do
+        nil -> Info.use_example?(day)
+        value -> value
+      end
+
     input =
       case part do
         :part_1 ->
@@ -54,23 +73,13 @@ defmodule Aoc.Day do
           handle(Info.part_2_input_handler(day), input)
       end
 
-    solution =
-      case part do
-        :part_1 ->
-          solve(Info.part_1_solution(day), handled_input)
+    case part do
+      :part_1 ->
+        solve(Info.part_1_solution(day), handled_input)
 
-        :part_2 ->
-          solve(Info.part_2_solution(day), handled_input)
-      end
-
-    part =
-      if example? do
-        "#{part}_example"
-      else
-        part
-      end
-
-    {part, solution}
+      :part_2 ->
+        solve(Info.part_2_solution(day), handled_input)
+    end
   end
 
   defp solve(nil, _), do: nil

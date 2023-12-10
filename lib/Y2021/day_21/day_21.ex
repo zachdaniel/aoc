@@ -72,7 +72,6 @@ defmodule Aoc.Y2021.Day21 do
 
   defp play_until_score_reached_with_dirac_die(game_state, score, wins \\ %{}) do
     new_game_states = play_dirac_round(game_state, score)
-    # IO.inspect("#{Enum.count(new_game_states)} possibilities")
 
     {new_wins, new_game_states} =
       Enum.reduce(new_game_states, {wins, []}, fn game_state, {wins, game_states} ->

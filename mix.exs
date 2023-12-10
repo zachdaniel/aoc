@@ -24,7 +24,10 @@ defmodule Aoc.MixProject do
     [
       {:spark, github: "ash-project/spark"},
       {:libgraph, "~> 0.16.0"},
+
+      # used for managing the readme & benchmarking
       {:jason, "~> 1.4"},
+      {:benchee, "~> 1.2"},
       # File system event watcher
       {:file_system, "~> 0.2"}
     ]

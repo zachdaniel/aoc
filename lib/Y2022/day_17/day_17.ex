@@ -33,22 +33,23 @@ defmodule Aoc.Y2022.Day17 do
   end
 
   defp find_cycle(input, n \\ 0)
+
   defp find_cycle(input, n) do
     if n >= 20 do
-    # top_20_offset = top_10_offset(input)
+      # top_20_offset = top_10_offset(input)
 
-    if Enum.all?(0..6, &input.tower[{&1, input.height - 1}]) do
-      raise n
+      if Enum.all?(0..6, &input.tower[{&1, input.height - 1}]) do
+        raise n
+      else
+        input
+        |> drop_rock()
+        |> find_cycle(n + 1)
+      end
     else
       input
       |> drop_rock()
       |> find_cycle(n + 1)
     end
-  else
-      input
-      |> drop_rock()
-      |> find_cycle(n + 1)
-  end
   end
 
   # defp top_10_offset(input) do
@@ -112,7 +113,7 @@ defmodule Aoc.Y2022.Day17 do
 
     input_without = input |> delete_rocks(current_coords)
 
-    if Enum.any?(new_coords, fn {x, y} -> input_without.tower[{x, y}] || (y == -1) end) do
+    if Enum.any?(new_coords, fn {x, y} -> input_without.tower[{x, y}] || y == -1 end) do
       :resting
     else
       {input_without |> set_rocks(new_coords), {x, y - 1}}
@@ -156,7 +157,7 @@ defmodule Aoc.Y2022.Day17 do
       |> Enum.map(&elem(&1, 1))
       |> Enum.max()
 
-    Map.update!(input, :height, &(max(&1, height + 1)))
+    Map.update!(input, :height, &max(&1, height + 1))
   end
 
   defp rock_coords({x, y}, :horizontal_line) do

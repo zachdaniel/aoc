@@ -6,7 +6,15 @@ defmodule Aoc.Day.Info do
   end
 
   def part_2_answer(day) do
-    Extension.fetch_opt(day, [:answers], :part_1)
+    Extension.fetch_opt(day, [:answers], :part_2)
+  end
+
+  def part_1_answer_visual?(day) do
+    Extension.fetch_opt(day, [:answers], :part_1_visual?)
+  end
+
+  def part_2_answer_visual?(day) do
+    Extension.fetch_opt(day, [:answers], :part_2_visual?)
   end
 
   def use_example?(day) do

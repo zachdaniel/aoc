@@ -4,6 +4,7 @@ defmodule Aoc.Y2021.Day13 do
   answers do
     part_1 712
     part_2 "BLHFJPJF"
+    part_2_visual?(true)
   end
 
   input do
