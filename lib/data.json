@@ -1290,11 +1290,11 @@
     "17": {
       "benches": [
         {
-          "name": "1",
           "average": " 31.80 ms",
           "deviation": " ±2.69%",
           "ips": "31.44",
           "median": " 31.85 ms",
+          "name": "1",
           "ninety_ninth_percentile": " 33.86 ms\n"
         }
       ],
@@ -1508,6 +1508,27 @@
           "median": " 1.17 s",
           "name": "2",
           "ninety_ninth_percentile": " 1.24 s\n"
+        }
+      ],
+      "stars": 2
+    },
+    "11": {
+      "benches": [
+        {
+          "name": "1",
+          "average": " 54.64 ms",
+          "deviation": " ±5.59%",
+          "ips": "18.30",
+          "median": " 54.02 ms",
+          "ninety_ninth_percentile": " 62.39 ms"
+        },
+        {
+          "name": "2",
+          "average": " 53.63 ms",
+          "deviation": " ±3.64%",
+          "ips": "18.65",
+          "median": " 53.55 ms",
+          "ninety_ninth_percentile": " 62.62 ms"
         }
       ],
       "stars": 2
