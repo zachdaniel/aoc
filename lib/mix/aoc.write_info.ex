@@ -188,6 +188,7 @@ defmodule Mix.Tasks.Aoc.WriteInfo do
 
   defp start_agent() do
     # if its already started thats fine
+    Application.ensure_all_started(:aoc)
     {:ok, _} = Agent.start_link(fn -> nil end, name: WriteInfo)
   end
 
