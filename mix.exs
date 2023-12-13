@@ -24,6 +24,9 @@ defmodule Aoc.MixProject do
     [
       {:spark, github: "ash-project/spark"},
       {:libgraph, "~> 0.16.0"},
+      # caching
+      {:nebulex, "~> 2.5"},
+      {:decorator, "~> 1.4"},
 
       # used for managing the readme & benchmarking
       {:jason, "~> 1.4"},
