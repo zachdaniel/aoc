@@ -1536,12 +1536,25 @@
     "12": {
       "benches": [
         {
-          "name": "1",
-          "ips": " 442.19",
           "average": "2.26 ms",
           "deviation": " ±7.58%",
+          "ips": " 442.19",
           "median": "2.27 ms",
+          "name": "1",
           "ninety_ninth_percentile": "2.60 ms"
+        }
+      ],
+      "stars": 1
+    },
+    "13": {
+      "benches": [
+        {
+          "name": "1",
+          "average": "7.29 ms",
+          "deviation": " ±4.33%",
+          "ips": " 137.13",
+          "median": "7.14 ms",
+          "ninety_ninth_percentile": "8.09 ms"
         }
       ],
       "stars": 1

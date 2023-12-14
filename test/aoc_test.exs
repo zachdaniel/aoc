@@ -12,14 +12,15 @@ defmodule AocTest do
       |> Enum.map(&String.trim_leading(&1, "lib/Y#{year}/day_"))
       |> Enum.map(fn day ->
         module = Module.concat(["Aoc", "Y#{year}", "Day#{day}"])
-        Code.ensure_compiled!(module)
+        {String.to_atom("#{year}_#{day}"), Code.ensure_compiled!(module)}
       end)
     end)
 
-  for day <- days do
+  for {tag, day} <- days do
     path = day.__info__(:compile)[:source] |> :binary.list_to_bin() |> Path.relative_to_cwd()
 
     unless {:ok, true} == Aoc.Day.Info.part_1_answer_visual?(day) do
+      @tag tag
       @tag String.to_atom(inspect(day))
       case Aoc.Day.Info.part_1_answer(day) do
         {:ok, part_1_answer} when not is_nil(part_1_answer) ->
@@ -33,6 +34,7 @@ defmodule AocTest do
     end
 
     unless {:ok, true} == Aoc.Day.Info.part_2_answer_visual?(day) do
+      @tag tag
       @tag String.to_atom(inspect(day))
       case Aoc.Day.Info.part_2_answer(day) do
         {:ok, part_2_answer} when not is_nil(part_2_answer) ->
