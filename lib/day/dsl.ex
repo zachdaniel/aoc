@@ -30,6 +30,9 @@ defmodule Aoc.Day.Dsl do
         type:
           {:spark_function_behaviour, Aoc.Day.InputHandler, {Aoc.Day.InputHandler.Function, 1}}
       ]
+    ],
+    imports: [
+      Aoc.Helpers
     ]
   }
 

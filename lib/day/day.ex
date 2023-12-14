@@ -2,6 +2,12 @@ defmodule Aoc.Day do
   alias Aoc.Day.Info
   use Spark.Dsl, default_extensions: [extensions: [Aoc.Day.Dsl]]
 
+  def handle_opts(_) do
+    quote do
+      import Aoc.Helpers
+    end
+  end
+
   def compute_missing_answer(day) do
     part =
       case Info.part_1_answer(day) do

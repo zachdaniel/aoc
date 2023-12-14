@@ -11,6 +11,8 @@ defmodule Aoc.Day.Watcher do
   def init(state) do
     opts = [dirs: [Path.absname("lib")], name: :aoc_watcher]
 
+    Aoc.Cache.start_link()
+
     case FileSystem.start_link(opts) do
       {:ok, _} ->
         FileSystem.subscribe(:aoc_watcher)
