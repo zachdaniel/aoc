@@ -65,10 +65,10 @@ defmodule Aoc.Y2023.Day17 do
     min_travel..max_travel
     |> Enum.flat_map(fn distance ->
       [
-        {{x, y - distance}, :vertical, :horizontalw},
-        {{x, y + distance}, :vertical, :horizontalw},
-        {{x + distance, y}, :horizontalw, :vertical},
-        {{x - distance, y}, :horizontalw, :vertical}
+        {{x, y - distance}, :vertical, :h},
+        {{x, y + distance}, :vertical, :h},
+        {{x + distance, y}, :h, :vertical},
+        {{x - distance, y}, :h, :vertical}
 
         # Why in the *actual fuck* does this not work but the above *does*????????
         # {{x, y - distance}, :vertical, :horizontal},
