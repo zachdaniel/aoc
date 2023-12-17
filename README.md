@@ -14,7 +14,7 @@ Helps me move quickly and do fun things like watching for file changes and print
 
   <img src="https://img.shields.io/static/v1?label=2022&message=33%20stars&style=for-the-badge&color=orange" alt="33 stars" />
 
-  <img src="https://img.shields.io/static/v1?label=2023&message=29%20stars&style=for-the-badge&color=orange" alt="29 stars" />
+  <img src="https://img.shields.io/static/v1?label=2023&message=31%20stars&style=for-the-badge&color=orange" alt="31 stars" />
 
 
 ## Benchmarks
@@ -189,3 +189,5 @@ Helps me move quickly and do fun things like watching for file changes and print
  | 2023 | 15 | 1 |  1.14 K | 880.92 μs | ±42.23% | 852.08 μs | 1198.84 μs |
  | 2023 | 15 | 2 |  351.46 | 2.85 ms |  ±6.19% | 2.85 ms | 3.23 ms |
  | 2023 | 16 | 1 | 82.87 |  12.07 ms |  ±3.91% |  12.14 ms | 12.83 ms |
+ | 2023 | 17 | 1 |  1.08 | 923.46 ms |  ±1.98% | 917.04 ms | 960.70 ms |
+ | 2023 | 17 | 2 |  0.38 |  2.65 s |  ±1.28% |  2.65 s | 2.68 s |

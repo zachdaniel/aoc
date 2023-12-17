@@ -19,6 +19,9 @@ defmodule Aoc.Helpers do
 
             {:keep, value} ->
               Map.put(acc, {x, -y}, value)
+
+            value ->
+              Map.put(acc, {x, -y}, value)
           end
         end)
       end)

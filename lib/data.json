@@ -1604,15 +1604,36 @@
     "16": {
       "benches": [
         {
-          "name": "1",
           "average": " 12.07 ms",
           "deviation": " ±3.91%",
           "ips": "82.87",
           "median": " 12.14 ms",
+          "name": "1",
           "ninety_ninth_percentile": " 12.83 ms"
         }
       ],
       "stars": 1
+    },
+    "17": {
+      "benches": [
+        {
+          "name": "1",
+          "average": "923.46 ms",
+          "deviation": " ±1.98%",
+          "ips": " 1.08",
+          "median": "917.04 ms",
+          "ninety_ninth_percentile": "960.70 ms"
+        },
+        {
+          "name": "2",
+          "average": " 2.65 s",
+          "deviation": " ±1.28%",
+          "ips": " 0.38",
+          "median": " 2.65 s",
+          "ninety_ninth_percentile": " 2.68 s"
+        }
+      ],
+      "stars": 2
     },
     "2": {
       "benches": [
